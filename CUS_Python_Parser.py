@@ -5,8 +5,8 @@ from datetime import datetime
 
 class CUSParser(object):
     """
-	Парсер CUS, применяется для разбора логов
-	"""
+    Парсер CUS, применяется для разбора логов
+    """
 
     def __init__(self, pattern):
         """
@@ -75,7 +75,7 @@ class CUSParser(object):
     def parse(self):
         """
         Парсит файл
-        :return: Dict list
+        :return: Self for chaining
         """
         self.data = re.findall(self.rgxString, self.data)
         self.data = map(lambda item: item[1].split("\t"), self.data)
@@ -86,7 +86,7 @@ class CUSParser(object):
     def parseSec(self):
         """
         Парсит файл SEC
-        :return: Dict list
+        :return: Self for chaining
         """
         self.data = re.findall(self.rgxString, self.data)
         self.data = map(lambda item: item[1].split("\t"), self.data)
@@ -104,7 +104,7 @@ class CUSParser(object):
     def sortByDate(self):
         """
         Сортировка по дате
-        :return: Dict
+        :return: Self for chaining
         """
         if self.parsed:
             self.data.sort(key=lambda item: datetime.strptime(item["Дата и время"], "%d.%m.%Y %H:%M:%S"))
